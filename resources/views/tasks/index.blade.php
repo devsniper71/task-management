@@ -43,7 +43,7 @@
                 <h2>Existing Tasks</h2>
 
                 @if ($tasks->count() > 0)
-                    <ul id="task-list" class="list-group">
+                    <ul id="task-list" class="list-group sortable">
                         @foreach ($tasks as $task)
                             <li class="list-group-item" data-task-id="{{ $task->id }}">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -97,6 +97,7 @@
                         data: {taskIds: taskIds},
                         success: function (response) {
                             console.log(response);
+                            window.location.reload();
                         },
                         error: function (xhr, status, error) {
                             console.log(xhr.responseText);
@@ -106,4 +107,36 @@
             });
         });
     </script>
+@endpush
+
+@push('styles')
+    <style>
+        .sortable {
+            cursor: move;
+        }
+
+        .list-group-item {
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .list-group-item .d-flex {
+            align-items: center;
+        }
+
+        .list-group-item .d-flex > div:first-child {
+            flex-grow: 1;
+        }
+
+        .list-group-item .btn {
+            margin-left: 8px;
+        }
+    </style>
 @endpush

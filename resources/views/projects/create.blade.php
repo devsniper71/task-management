@@ -22,6 +22,6 @@
             </div>
         </div>
 
-        <a href="{{ route('tasks.index.index') }}" class="btn btn-secondary mt-3">Back</a>
+        <a href="{{ route('tasks.index') }}" class="btn btn-secondary mt-3">Back</a>
     </div>
 @endsection

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect()->route('tasks.index');
 });
 
-Route::resource('tasks', 'App\Http\Controllers\TaskController')->except(['show']);
+Route::resource('tasks', 'App\Http\Controllers\TaskController')->except(['create', 'show']);
 Route::put('tasks/reorder', 'App\Http\Controllers\TaskController@reorder')->name('tasks.reorder');
 
 Route::resource('projects', 'App\Http\Controllers\ProjectController');

@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('tasks.index');
 });
+
+Route::resource('tasks', 'App\Http\Controllers\TaskController')->except(['show']);
+Route::put('tasks/reorder', 'App\Http\Controllers\TaskController@reorder')->name('tasks.reorder');
+
+Route::resource('projects', 'App\Http\Controllers\ProjectController');

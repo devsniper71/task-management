@@ -58,6 +58,10 @@
     <p>No tasks found.</p>
 @endif
 
+<hr>
+
+<a href="{{ route('projects.index') }}">Projects</a>
+
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jqueryui.com/jquery-ui-1.12.1.min.js"></script>

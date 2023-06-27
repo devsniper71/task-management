@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route for updating task order
+Route::put('tasks/reorder', 'App\Http\Controllers\TaskController@reorder')->name('tasks.reorder');

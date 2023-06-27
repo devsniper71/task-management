@@ -1,30 +1,39 @@
-<h1>Edit Task</h1>
+@extends('layouts.app')
 
-<form action="{{ route('tasks.update', $task->id) }}" method="POST">
-    @csrf
-    @method('PUT')
+@section('content')
+    <div class="container">
+        <h1>Edit Task</h1>
 
-    <div>
-        <label for="name">Task Name:</label>
-        <input type="text" name="name" id="name" value="{{ $task->name }}" required>
+        <form action="{{ route('tasks.update', $task->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="name">Task Name:</label>
+                <input type="text" name="name" id="name" value="{{ $task->name }}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Priority:</label>
+                <input type="number" name="priority" id="priority" value="{{ $task->priority }}" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="project_id">Project:</label>
+                <select name="project_id" id="project_id" class="form-control">
+                    <option value="">None</option>
+                    @foreach ($projects as $project)
+                        <option value="{{ $project->id }}" {{ $project->id == $task->project_id ? 'selected' : '' }}>
+                            {{ $project->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-primary">Update Task</button>
+            <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Back</a>
+        </form>
     </div>
-
-    <div>
-        <label for="priority">Priority:</label>
-        <input type="number" name="priority" id="priority" value="{{ $task->priority }}" required>
-    </div>
-
-    <div>
-        <label for="project_id">Project:</label>
-        <select name="project_id" id="project_id">
-            <option value="">None</option>
-            @foreach ($projects as $project)
-                <option value="{{ $project->id }}" {{ $project->id == $task->project_id ? 'selected' : '' }}>
-                    {{ $project->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-
-    <button type="submit">Update Task</button>
-</form>
+@endsection

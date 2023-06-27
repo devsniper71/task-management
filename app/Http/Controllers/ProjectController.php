@@ -10,17 +10,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $projectId = request()->get('project');
 
-        if ($projectId) {
-            $project = Project::findOrFail($projectId);
-            $tasks = $project->tasks;
-        } else {
-            $project = null;
-            $tasks = [];
-        }
-
-        return view('projects.index', compact('projects', 'project', 'tasks'));
+        return view('projects.index', compact('projects'));
     }
 
     public function create()
@@ -34,7 +25,8 @@ class ProjectController extends Controller
             'name' => 'required',
         ]);
 
-        Project::create($validatedData);
+        $project = new Project($validatedData);
+        $project->save();
 
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
@@ -59,6 +51,8 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
+        return redirect()->route('projects.index')
+            ->with('success', 'Project deleted successfully.');
     }
+
 }

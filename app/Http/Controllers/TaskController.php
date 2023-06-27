@@ -21,6 +21,11 @@ class TaskController extends Controller
         // Get all projects
         $projects = Project::all();
 
+        // Check if $projects is null or empty
+        if ($projects->isEmpty()) {
+            return redirect()->route('projects.create');
+        }
+
         // Return view with tasks and projects data
         return view('tasks.index', compact('tasks', 'projects'));
     }

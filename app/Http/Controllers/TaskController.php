@@ -16,13 +16,6 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'projects'));
     }
 
-    public function create()
-    {
-        $projects = Project::all();
-
-        return view('tasks.create', compact('projects'));
-    }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([

@@ -4,6 +4,8 @@
     <div class="container">
         <h1>Edit Task</h1>
 
+        @include('layouts.alert')
+
         <form action="{{ route('tasks.update', $task->id) }}" method="POST">
             @csrf
             @method('PUT')

@@ -15,7 +15,8 @@
 
             <div class="form-group">
                 <label for="priority">Priority:</label>
-                <input type="number" name="priority" id="priority" value="{{ $task->priority }}" class="form-control" required>
+                <input type="number" name="priority" id="priority" value="{{ $task->priority }}" class="form-control"
+                       required>
             </div>
 
             <div class="form-group">

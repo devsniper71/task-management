@@ -43,32 +43,32 @@ sail build --no-cache
 sail up -d
 ```
 
-> #### STEP 07: Project stop
-
-```bash
-sail down
-```
-
-> #### Step 08: Generate the app key
+> #### Step 07: Generate the app key
 
 ```bash
 sail artisan key:generate
 ```
 
-> #### Step 09: Storage Link
+> #### Step 08: Storage Link
 
 ```bash
 sail artisan storage:link
 ```
 
-> #### STEP 10: Run migration
+> #### STEP 09: Run migration
 
 ```bash
 sail artisan migrate
 ```
 
-> #### STEP 11: Deploy project
+> #### STEP 10: Deploy project
 
 ```bash
 http://localhost
+```
+
+> #### STEP 07: Project stop
+
+```bash
+sail down
 ```

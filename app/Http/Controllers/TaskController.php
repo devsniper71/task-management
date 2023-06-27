@@ -42,7 +42,7 @@ class TaskController extends Controller
     /**
      * Store a newly created task in storage.
      *
-     * @param  \App\Http\Requests\TaskRequest  $request
+     * @param \App\Http\Requests\TaskRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskRequest $request)
@@ -57,7 +57,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified task.
      *
-     * @param  \App\Models\Task  $task
+     * @param \App\Models\Task $task
      * @return \Illuminate\View\View
      */
     public function edit(Task $task)
@@ -72,8 +72,8 @@ class TaskController extends Controller
     /**
      * Update the specified task in storage.
      *
-     * @param  \App\Http\Requests\TaskRequest  $request
-     * @param  \App\Models\Task  $task
+     * @param \App\Http\Requests\TaskRequest $request
+     * @param \App\Models\Task $task
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(TaskRequest $request, Task $task)
@@ -88,7 +88,7 @@ class TaskController extends Controller
     /**
      * Remove the specified task from storage.
      *
-     * @param  \App\Models\Task  $task
+     * @param \App\Models\Task $task
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Task $task)
@@ -103,7 +103,7 @@ class TaskController extends Controller
     /**
      * Reorder the tasks based on the given task IDs.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function reorder(Request $request)

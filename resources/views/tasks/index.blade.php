@@ -4,11 +4,7 @@
     <div class="container">
         <h1>Tasks</h1>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('layouts.alert')
 
         <div class="row">
             <div class="col-md-6">

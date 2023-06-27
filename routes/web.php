@@ -21,8 +21,6 @@ Route::get('/', function () {
 // Resourceful routes for tasks, excluding create and show actions
 Route::resource('tasks', 'App\Http\Controllers\TaskController')->except(['create', 'show']);
 
-// Route for updating task order
-Route::put('tasks/reorder', 'App\Http\Controllers\TaskController@reorder')->name('tasks.reorder');
 
 // Resourceful routes for projects
 Route::resource('projects', 'App\Http\Controllers\ProjectController');

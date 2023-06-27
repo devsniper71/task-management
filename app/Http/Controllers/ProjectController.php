@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -32,17 +32,14 @@ class ProjectController extends Controller
     /**
      * Store a newly created project in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\ProjectRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-        ]);
+        $validatedData = $request->validated();
 
-        $project = new Project($validatedData);
-        $project->save();
+        $project = Project::create($validatedData);
 
         return redirect()->route('projects.index')->with('success', 'Project created successfully.');
     }
@@ -50,7 +47,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified project.
      *
-     * @param  \App\Models\Project  $project
+     * @param \App\Models\Project $project
      * @return \Illuminate\View\View
      */
     public function edit(Project $project)
@@ -61,15 +58,13 @@ class ProjectController extends Controller
     /**
      * Update the specified project in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param \App\Http\Requests\ProjectRequest $request
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-        ]);
+        $validatedData = $request->validated();
 
         $project->update($validatedData);
 
@@ -79,14 +74,13 @@ class ProjectController extends Controller
     /**
      * Remove the specified project from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param \App\Models\Project $project
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Project $project)
     {
         $project->delete();
 
-        return redirect()->route('projects.index')
-            ->with('success', 'Project deleted successfully.');
+        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
     }
 }

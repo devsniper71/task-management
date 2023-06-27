@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    /**
+     * Display a listing of the tasks.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $tasks = Task::orderBy('priority')->get();
@@ -16,6 +21,12 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks', 'projects'));
     }
 
+    /**
+     * Store a newly created task in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -30,6 +41,12 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
+    /**
+     * Show the form for editing the specified task.
+     *
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\View\View
+     */
     public function edit(Task $task)
     {
         $projects = Project::all();
@@ -37,6 +54,13 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'projects'));
     }
 
+    /**
+     * Update the specified task in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Task $task)
     {
         $validatedData = $request->validate([
@@ -50,6 +74,12 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 
+    /**
+     * Remove the specified task from storage.
+     *
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Task $task)
     {
         $task->delete();
@@ -57,6 +87,12 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 
+    /**
+     * Reorder the tasks based on the provided task IDs.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function reorder(Request $request)
     {
         $taskIds = $request->input('taskIds', []);

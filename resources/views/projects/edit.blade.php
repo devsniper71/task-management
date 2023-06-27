@@ -3,6 +3,9 @@
 @section('content')
     <div class="container">
         <h1>Edit Project</h1>
+
+        @include('layouts.alert')
+
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('projects.update', $project->id) }}" method="POST">
